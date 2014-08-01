@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'figaro'
 gem 'angularjs-rails'
 
 gem 'virtus' # Use virtus for value objects and form objects

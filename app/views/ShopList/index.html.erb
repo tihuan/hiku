@@ -4,9 +4,9 @@
   <input type="submit" value="Add">
 </form>
 <div ng-controller="ItemsController as ItemsCtrl">
-  <ul>
+  <ol>
     <li ng-repeat="item in ItemsCtrl.items">
       {{item.name}}, {{item.quantity}}
     </li>
-  </ul>
+  </ol>
 </div>
