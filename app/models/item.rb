@@ -13,9 +13,9 @@ class Item < ActiveRecord::Base
 
   def self.post_to_endpoint(endpoint)
     uri = URI.parse(endpoint)
+    app_id = ENV['APP_ID']
+    secret = ENV['SECRET']
 
-    app_id = 'e2a01662323845bf5b289b90f4c67dbae982d65247f235'
-    secret = '18f9d67455211c636e'
     time = Time.now.getutc.strftime("%F %T.%6N")
 
     post_params = {
