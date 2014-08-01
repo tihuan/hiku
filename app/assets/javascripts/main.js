@@ -1,2 +1,2 @@
 
-var app = angular.module("ShopList", ['ngResource']);
+var app = angular.module("Shoplist", ['ngResource']);
