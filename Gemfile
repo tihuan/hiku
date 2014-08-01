@@ -1,6 +1,19 @@
 source 'https://rubygems.org'
 
+gem 'angularjs-rails'
 
+gem 'virtus' # Use virtus for value objects and form objects
+gem 'unicorn'
+gem 'yui-compressor'
+
+# Embed the V8 Javascript Interpreter into Ruby for LESS/Bootstrap
+gem "therubyracer"
+gem 'libv8'
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails'
+gem 'font-awesome-sass'
+
+gem 'chartkick'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
@@ -26,6 +39,30 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+group :development, :test do
+  gem 'bullet'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'simplecov', '~> 0.8.0',  :require => false
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+  gem 'shoulda'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+end
+
+gem 'rails_12factor', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,4 +74,5 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
 
