@@ -37,8 +37,8 @@ class Get < HikuConnect
   def initialize(args={})
     super
     req = Net::HTTP::Get.new(uri.path)
-    req.body = URI.encode_www_form(params)
     req["Content-Type"] = "application/x-www-form-urlencoded"
+    req.body = URI.encode_www_form(params)
 
     @response = http.start {|htt| htt.request(req) }
   end
@@ -50,8 +50,8 @@ class Post < HikuConnect
   def initialize(args={})
     super
     req = Net::HTTP::Post.new(uri.path)
-    req.body = URI.encode_www_form(params)
     req["Content-Type"] = "application/x-www-form-urlencoded"
+    req.body = URI.encode_www_form(params)
 
     @response = http.start {|htt| htt.request(req) }
   end
