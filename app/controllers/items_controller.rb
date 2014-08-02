@@ -7,6 +7,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    render  json: Item.destroy_items(params[:id]), status: 200
+    render json: Item.destroy_items(params[:id]), status: 200
   end
 end
