@@ -1,7 +1,8 @@
 app.controller('SessionsController', function() {
   this.loggedIn = false;
 
-  this.loginno = function() {
-    this.login = true;
+  this.login = function() {
+    console.log("called!");
+    this.loggedIn = true;
   };
 });
