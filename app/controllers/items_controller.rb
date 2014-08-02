@@ -5,7 +5,19 @@ class ItemsController < ApplicationController
     render json: items, status: 200
   end
 
+  def create
+    if item_created = Item.create_item(params)
+      render json: item_created, status: 200
+    else
+      render json: 'Something went wrong. Please try again!'
+    end
+  end
+
   def destroy
-    render json: Item.destroy_items(params[:id]), status: 200
+    if item_destroyed = Item.destroy_items(params)
+      render json: item_destroyed, status: 200
+    else
+      render json: 'Something went wrong. Please try again!'
+    end
   end
 end
