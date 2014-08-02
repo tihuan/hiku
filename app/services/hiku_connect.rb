@@ -1,69 +1,60 @@
 require 'pry'
 
 class HikuConnect
-  attr_reader :endpoint, :uri, :app_id, :secret, :time, :sig
+  attr_reader :uri, :app_id, :secret, :time, :sig,
+                     :local_params
 
   def initialize(args={})
-    @endpoint = args[:endpoint]
+    endpoint = args[:endpoint]
     @uri = URI.parse(endpoint)
     @app_id = ENV['APP_ID']
     @secret = ENV['SECRET']
     @time = Time.now.getutc.strftime("%F %T.%6N")
     @sig = Digest::SHA256.hexdigest(app_id+secret+time)
+    @local_params = args.reject { |k, _| k == :endpoint }
   end
+
+  def params
+    {
+      app_id: app_id,
+      time: time,
+      sig: sig
+    }.merge(local_params)
+  end
+
+  # def req
+  # end
 end
 
 class Get < HikuConnect
-  attr_reader :response, :token
-
+  attr_reader :response
   def initialize(args={})
     super
-    @token = args[:token]
-    params = {
-        app_id: app_id,
-        time: time,
-        sig: sig,
-        token: token
-        # email: 'alex@hiku.us',
-        # password: 'codehiku'
-    }
-
+    Net::HTTP::Get.new(uri.path)
     req = Net::HTTP::Get.new(uri.path)
-    # req = Net::HTTP::Post.new(uri.path)
     req.body = URI.encode_www_form(params)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    # p req.body
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.ssl_version = :SSLv3
     @response = http.start {|htt| htt.request(req) }
   end
+
+  # def req
+  #   puts "Calling HikuGet Here"
+  #   Net::HTTP::Get.new(uri.path)
+  # end
 end
 
 class Post < HikuConnect
-  attr_reader :response
-
-  def initialize(endpoint)
+  def initialize(args={})
     super
-    post_params = {
-        app_id: app_id,
-        time: time,
-        sig: sig,
-        token: "9604d9a375315cb55d471cf11ff31584",
-        email: 'alex@hiku.us',
-        password: 'codehiku'
-    }
-
-    req = Net::HTTP::Post.new(uri.path)
-    req.body = URI.encode_www_form(post_params)
-    req["Content-Type"] = "application/x-www-form-urlencoded"
-
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.ssl_version = :SSLv3
-    @response = http.start {|htt| htt.request(req) }
   end
+
+  # def req
+  #   req = Net::HTTP::Post.new(uri.path)
+  # end
 end
 
 # class HikuPatch < Hiku
