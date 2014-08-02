@@ -6,6 +6,7 @@ app.factory('Item', ['$resource', function($resource) {
     return this.service.query();
   };
   Item.prototype.create = function(attr) {
+    console.log(attr);
     return this.service.save(attr);
   };
   Item.prototype.delete = function(itemId) {

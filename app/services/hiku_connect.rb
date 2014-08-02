@@ -51,8 +51,9 @@ class Post < HikuConnect
     super
     req = Net::HTTP::Post.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    req.body = URI.encode_www_form(params)
-
+    puts "\n\n\nPOST REQUEST"
+    p req.body = URI.encode_www_form(params)
+    puts "AFTER POST REQUEST\n\n\n"
     @response = http.start {|htt| htt.request(req) }
   end
 end

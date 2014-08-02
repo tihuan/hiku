@@ -3,10 +3,12 @@ app.controller('ItemsController', ['Item', function(Item) {
 
   this.createItem = function() {
     var attr = {};
-    attr.name = $filter('uppercase')(this.name);
+    attr.name = this.name;
+    attr.quantity = this.quantity;
     var newItem = Item.create(attr);
     this.items.push(newItem);
     this.name = "";
+    this.quantity = "";
   };
 
   this.deleteItem = function(id, index) {
