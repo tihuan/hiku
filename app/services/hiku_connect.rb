@@ -1,19 +1,18 @@
 require 'pry'
 
 class HikuConnect
-  attr_reader :uri, :app_id, :secret, :time, :sig,
+  attr_reader :uri, :app_id, :time, :sig,
                      :local_params, :http
 
   def initialize(args={})
     endpoint = args[:endpoint]
     @uri = URI.parse(endpoint)
     @app_id = ENV['APP_ID']
-    @secret = ENV['SECRET']
+    secret = ENV['SECRET']
     @time = Time.now.getutc.strftime("%F %T.%6N")
     @sig = Digest::SHA256.hexdigest(app_id+secret+time)
     @local_params = args.reject { |k, _| k == :endpoint }
-    @http = Net::HTTP.new(uri.host, uri.port)
-    setup_http(http)
+    @http = setup_http
   end
 
   def params
@@ -24,9 +23,11 @@ class HikuConnect
     }.merge(local_params)
   end
 
-  def setup_http(http)
+  def setup_http
+    http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.ssl_version = :SSLv3
+    return http
   end
 end
 
