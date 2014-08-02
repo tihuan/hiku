@@ -60,8 +60,18 @@ end
 # class HikuPatch < Hiku
 # end
 
-# class HikuDelete < Hiku
-# end
+class Delete < HikuConnect
+  attr_reader :response
+
+  def initialize(args={})
+    super
+    req = Net::HTTP::Delete.new(uri.path)
+    req["Content-Type"] = "application/x-www-form-urlencoded"
+    req.body = URI.encode_www_form(params)
+
+    @response = http.start {|htt| htt.request(req) }
+  end
+end
 
 # pry.binding
 
