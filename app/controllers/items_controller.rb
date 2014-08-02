@@ -1,4 +1,3 @@
-require 'pry'
 class ItemsController < ApplicationController
 
   def index
