@@ -18,6 +18,7 @@ app.controller('SessionsController', ['$http', 'Session', '$window', function($h
       // error
       function(error) {
         sessionCtrl.errorMsg = error.data;
+        delete $window.sessionStorage.token;
         sessionCtrl.error = true;
       }
     )
