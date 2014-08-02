@@ -3,7 +3,7 @@ app.factory('authInterceptor', function($rootScope, $q, $window) {
     request: function(config) {
       config.headers = config.headers || {};
       if ($window.sessionStorage.token) {
-        config.headers['token'] = $window.sessionStorage.token;
+        config.headers['hiku_token'] = $window.sessionStorage.token;
       }
       return config;
     },
@@ -17,6 +17,8 @@ app.factory('authInterceptor', function($rootScope, $q, $window) {
   };
 });
 
-app.config(function($httpProvider) {
-  $httpProvider.interceptor.push('authInterceptor');
-});
+app.config([
+  "$httpProvider", function($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+  }
+]);
