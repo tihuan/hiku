@@ -2,7 +2,7 @@ require 'pry'
 
 class HikuConnect
   attr_reader :uri, :app_id, :secret, :time, :sig,
-                     :local_params
+                     :local_params, :http
 
   def initialize(args={})
     endpoint = args[:endpoint]
@@ -12,6 +12,8 @@ class HikuConnect
     @time = Time.now.getutc.strftime("%F %T.%6N")
     @sig = Digest::SHA256.hexdigest(app_id+secret+time)
     @local_params = args.reject { |k, _| k == :endpoint }
+    @http = Net::HTTP.new(uri.host, uri.port)
+    setup_http(http)
   end
 
   def params
@@ -22,22 +24,20 @@ class HikuConnect
     }.merge(local_params)
   end
 
-  # def req
-  # end
+  def setup_http(http)
+    http.use_ssl = true
+    http.ssl_version = :SSLv3
+  end
 end
 
 class Get < HikuConnect
   attr_reader :response
   def initialize(args={})
     super
-    Net::HTTP::Get.new(uri.path)
     req = Net::HTTP::Get.new(uri.path)
     req.body = URI.encode_www_form(params)
     req["Content-Type"] = "application/x-www-form-urlencoded"
 
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.ssl_version = :SSLv3
     @response = http.start {|htt| htt.request(req) }
   end
 
