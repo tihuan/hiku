@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
 
   def create
-    if user = User.authenticate(params)
-      session[:token] = user[:token]
-      render json: user,  status: 200
+    user = User.authenticate(params)
+    if user[:status] == "ok"
+      session[:token] = user[:data][:token]
+      head 200
     else
-      render json: 'Invalid inputs. Please try again!'
+      render json: user[:errMsg] , status: 401
     end
   end
 
