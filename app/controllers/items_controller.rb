@@ -5,4 +5,8 @@ class ItemsController < ApplicationController
     items = Item.all_items
     render json: items
   end
+
+  def destroy
+    render Item.destroy_items(params[:id])
+  end
 end

@@ -7,7 +7,7 @@
   <ol>
     <li ng-repeat="item in ItemsCtrl.items">
       {{item.name}}, {{item.quantity}}
-      <a href="" ng-click="deleteItem($index)">Delete</a>
+      <a href="" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</a>
     </li>
   </ol>
 </div>
