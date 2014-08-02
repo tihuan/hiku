@@ -1,7 +1,6 @@
 app.controller('SessionsController', ['$http', 'Session', '$window', function($http, Session, $window) {
   this.loggedIn = false;
   this.error = false;
-  this.invalid = false;
   this.login = function() {
     var sessionCtrl = this;
     var attr = {};
