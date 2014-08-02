@@ -1,6 +1,6 @@
 <div ng-controller="SessionsController as session">
   <h1>hiku</h1>
-  <form ng-submit="sessions.login()" ng-hide="session.loggedIn">
+  <form ng-submit="session.login()" ng-hide="session.loggedIn">
     <h1>Log In</h1>
     <input type="text" ng-model='session.email' placeholder='JohnDoe@Gmail.com'>
     <input type="text" ng-model='session.password' placeholder='$ecret'>
