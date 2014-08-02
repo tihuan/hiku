@@ -1,9 +1,8 @@
 app.controller('SessionsController', ['$http', 'Session', function($http, Session) {
   this.loggedIn = false;
   this.error = false;
+  this.invalid = false;
   this.login = function() {
-    console.log("called!");
-    console.log(this);
     var sessionCtrl = this;
     var attr = {};
     attr.email = this.email;
@@ -12,10 +11,15 @@ app.controller('SessionsController', ['$http', 'Session', function($http, Sessio
     request.$promise.then(
       // success
       function(resp) {
+        console.log(resp);
+        console.log("Success!!!");
         sessionCtrl.loggedIn = true;
       },
       // error
       function(error) {
+        console.log("Error handled!");
+        console.log(error);
+        sessionCtrl.errorMsg = error.data;
         sessionCtrl.error = true;
       }
     )
