@@ -6,9 +6,9 @@ class HikuConnect
 
   def initialize(args={})
     endpoint = args[:endpoint]
+    secret = ENV['SECRET']
     @uri = URI.parse(endpoint)
     @app_id = ENV['APP_ID']
-    secret = ENV['SECRET']
     @time = Time.now.getutc.strftime("%F %T.%6N")
     @sig = Digest::SHA256.hexdigest(app_id+secret+time)
     @local_params = args.reject { |k, _| k == :endpoint }
@@ -33,6 +33,7 @@ end
 
 class Get < HikuConnect
   attr_reader :response
+
   def initialize(args={})
     super
     req = Net::HTTP::Get.new(uri.path)
@@ -41,21 +42,19 @@ class Get < HikuConnect
 
     @response = http.start {|htt| htt.request(req) }
   end
-
-  # def req
-  #   puts "Calling HikuGet Here"
-  #   Net::HTTP::Get.new(uri.path)
-  # end
 end
 
 class Post < HikuConnect
+  attr_reader :response
+
   def initialize(args={})
     super
-  end
+    req = Net::HTTP::Post.new(uri.path)
+    req.body = URI.encode_www_form(params)
+    req["Content-Type"] = "application/x-www-form-urlencoded"
 
-  # def req
-  #   req = Net::HTTP::Post.new(uri.path)
-  # end
+    @response = http.start {|htt| htt.request(req) }
+  end
 end
 
 # class HikuPatch < Hiku
