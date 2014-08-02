@@ -12,12 +12,10 @@ app.controller('SessionsController', ['$http', 'Session', function($http, Sessio
       // success
       function(resp) {
         console.log(resp);
-        console.log("Success!!!");
         sessionCtrl.loggedIn = true;
       },
       // error
       function(error) {
-        console.log("Error handled!");
         console.log(error);
         sessionCtrl.errorMsg = error.data;
         sessionCtrl.error = true;
