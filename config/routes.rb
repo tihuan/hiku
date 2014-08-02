@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :items
-
+  resources :sessions, only: [:create, :destroy]
   get 'shoplist/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
