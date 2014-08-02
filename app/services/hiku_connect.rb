@@ -73,39 +73,3 @@ class Delete < HikuConnect
     @response = http.start {|htt| htt.request(req) }
   end
 end
-
-# pry.binding
-
-
-# class Hiku
-
-#   def initialize
-#     @app_id = ENV['APP_ID']
-#     @secret = ENV['SECRET']
-#     @time = Time.now.getutc.strftime("%F %T.%6N")
-#   end
-
-#   app_id = ENV['APP_ID']
-#   secret = ENV['SECRET']
-#   time = Time.now.getutc.strftime("%F %T.%6N")
-
-#   post_params = {
-#       app_id: 'e2a01662323845bf5b289b90f4c67dbae982d65247f235',
-#       time: time,
-#       sig: Digest::SHA256.hexdigest(app_id+secret+time),
-#       token: "d029e237120cc7ac205dc457e6f4f689"
-#       # email: 'alex@hiku.us',
-#       # password: 'codehiku'
-#   }
-
-#   req = Net::HTTP::Get.new(uri.path)
-#   # req = Net::HTTP::Post.new(uri.path)
-#   req.body = URI.encode_www_form(post_params)
-#   req["Content-Type"] = "application/x-www-form-urlencoded"
-#   p req.body
-
-#   http = Net::HTTP.new(uri.host, uri.port)
-#   http.use_ssl = true
-#   http.ssl_version = :SSLv3
-#   response = http.start {|htt| htt.request(req) }
-# end
