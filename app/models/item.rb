@@ -2,12 +2,8 @@ class Item < ActiveRecord::Base
 
   def self.all_items
     endpoint = 'https://hiku-staging.herokuapp.com/api/v1/list'
-    puts "\n\n\n"
-    puts "Below is reuslt of post_to_endpoint"
-    p post_to_endpoint(endpoint)
-    puts "Above is post_to_endpoint result Below is the body"
+    post_to_endpoint(endpoint)
     puts response = post_to_endpoint(endpoint).body
-    puts "AFTER in all_items MODEL"
     response_json = JSON.parse(response, symbolize_names: true)[:response][:data]
     puts "\n\n Product Order"
     product_order = response_json[:list].to_json
