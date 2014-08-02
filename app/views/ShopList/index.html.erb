@@ -3,7 +3,7 @@
   <form ng-submit="session.login()" ng-hide="session.loggedIn">
     <h1>Log In</h1>
     <div ng-show="session.error">
-        There was a problem contacting the server. Please try again.
+        {{session.errorMsg}} Please try again.
     </div>
     <input type="text" ng-model='session.email' placeholder='JohnDoe@Gmail.com'>
     <input type="password" ng-model='session.password' placeholder='$ecret'>
