@@ -38,7 +38,8 @@ class Get < HikuConnect
     super
     req = Net::HTTP::Get.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    req.body = URI.encode_www_form(params)
+    get_params = params.merge(token: '9604d9a375315cb55d471cf11ff31584')
+    req.body = URI.encode_www_form(get_params)
 
     @response = http.start {|htt| htt.request(req) }
   end
@@ -68,7 +69,10 @@ class Delete < HikuConnect
     super
     req = Net::HTTP::Delete.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    req.body = URI.encode_www_form(params)
+    delete_params = params.merge({ token: '9604d9a375315cb55d471cf11ff31584',
+                                                           action: 'crossOff'
+                                                        })
+    req.body = URI.encode_www_form(delete_params)
 
     @response = http.start {|htt| htt.request(req) }
   end
