@@ -1,5 +1,3 @@
-require 'pry'
-
 class HikuConnect
   attr_reader :uri, :app_id, :time, :sig,
                      :local_params, :http
@@ -38,8 +36,7 @@ class Get < HikuConnect
     super
     req = Net::HTTP::Get.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    get_params = params.merge(token: '9604d9a375315cb55d471cf11ff31584')
-    req.body = URI.encode_www_form(get_params)
+    req.body = URI.encode_www_form(params)
 
     @response = http.start {|htt| htt.request(req) }
   end
@@ -69,9 +66,7 @@ class Delete < HikuConnect
     super
     req = Net::HTTP::Delete.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    delete_params = params.merge({ token: '9604d9a375315cb55d471cf11ff31584',
-                                                           action: 'crossOff'
-                                                        })
+    delete_params = params.merge({ action: 'crossOff' })
     req.body = URI.encode_www_form(delete_params)
 
     @response = http.start {|htt| htt.request(req) }
