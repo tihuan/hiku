@@ -6,13 +6,11 @@ app.controller('ItemsController', ['Item', function(Item) {
     var attr = {};
     attr.name = this.name;
     attr.quantity = this.quantity;
+    itemsCtrl.items.push(attr);
     var newItem = Item.create(attr);
-    itemsCtrl.items.push(newItem);
     newItem.$promise.then(
       function(success) {
-        var all_items = itemsCtrl.items;
-        var item_created = all_items[all_items.length-1];
-        item_created['id'] = item_created.data.id;
+        attr['id'] = newItem.data.id;
       }
       )
     this.name = "";
