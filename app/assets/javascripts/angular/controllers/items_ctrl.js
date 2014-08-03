@@ -1,8 +1,6 @@
 app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootScope) {
   var itemsCtrl = this;
-  this.items = function() {
-    Item.all();
-  }
+  this.items = Item.all();
 
   this.createItem = function() {
     var attr = {};
