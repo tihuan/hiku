@@ -26,6 +26,10 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', 
       }
     )
   };
+  this.logout = function() {
+    delete $window.sessionStorage.token;
+    $window.location.reload();
+  };
 
   function clearInput(attr) {
     attr.email = "";
