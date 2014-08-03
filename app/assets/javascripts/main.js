@@ -1,4 +1,4 @@
-var app = angular.module("Shoplist", ['ngResource']);
+var app = angular.module("Shoplist", ['ngResource', 'ngRoute']);
 
 app.config([
   "$httpProvider", function($httpProvider) {
