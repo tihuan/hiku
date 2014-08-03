@@ -17,7 +17,7 @@
       <input type="integer" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
       <input type="submit" value="Add">
     </form>
-    <ol>
+    <ol ng-if="session.loggedIn">
       <li ng-repeat="item in ItemsCtrl.items">
         {{item.name}}, {{item.quantity}}
         <a href="" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</a>

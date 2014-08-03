@@ -1,8 +1,10 @@
-app.controller('ItemsController', ['Item', function(Item) {
-  this.items = Item.all();
+app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootScope) {
+  var itemsCtrl = this;
+  this.items = function() {
+    Item.all();
+  }
 
   this.createItem = function() {
-    var itemsCtrl = this;
     var attr = {};
     attr.name = this.name;
     attr.quantity = this.quantity;
@@ -21,4 +23,8 @@ app.controller('ItemsController', ['Item', function(Item) {
     this.items.splice(index, 1);
     return Item.delete(id);
   };
+
+  $rootScope.$on('loggedIn', function() {
+    itemsCtrl.items = Item.all();
+  });
 }]);
