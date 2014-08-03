@@ -1,8 +1,8 @@
 class Item < ActiveRecord::Base
 
-  def self.all_items
+  def self.all_items(get_params)
     endpoint = 'https://hiku-staging.herokuapp.com/api/v1/list'
-    get_params = { endpoint: endpoint }
+    get_params = get_params.merge({ endpoint: endpoint })
     puts response = HikuConnect::Get.new(get_params).response.body
     response_json = JSON.parse(response, symbolize_names: true)[:response][:data]
     puts "\n\n Product List"
@@ -29,9 +29,8 @@ class Item < ActiveRecord::Base
 
   private
   def self.post_to_endpoint(post_params)
-    params = { token: '9604d9a375315cb55d471cf11ff31584' }.merge(post_params)
     puts "\n\n\n Check endpoint params"
-    p params
+    p post_params
     puts "After\n\n\n"
     puts "Checking Post response"
     p HikuConnect::Post.new(post_params).response
