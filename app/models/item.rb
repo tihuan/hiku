@@ -14,9 +14,7 @@ class Item < ActiveRecord::Base
     add_params = add_params.reject { |k, _| k == "action" || k == "controller" || k == "item" }
     post_params = { endpoint: endpoint }.merge(add_params).symbolize_keys
     puts response = HikuConnect::Post.new(post_params).response.body
-    response_json = JSON.parse(response, symbolize_names: true)[:response][:data]
-    puts "\n\n Product List"
-    product_order = response_json[:list].to_json
+    response_json = JSON.parse(response, symbolize_names: true)[:response]
   end
 
   def self.destroy_items(destroy_params)
