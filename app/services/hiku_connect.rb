@@ -66,7 +66,8 @@ class Delete < HikuConnect
     super
     req = Net::HTTP::Delete.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
-    delete_params = params.merge({ action: 'crossOff' })
+    delete_params = params.merge({ action: 'clear' })
+    # delete_params = params.merge({ action: 'crossOff' })
     req.body = URI.encode_www_form(delete_params)
 
     @response = http.start {|htt| htt.request(req) }
