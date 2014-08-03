@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'figaro'
+gem 'angular-ui-bootstrap-rails'
 gem 'angularjs-rails'
 
 gem 'virtus' # Use virtus for value objects and form objects
