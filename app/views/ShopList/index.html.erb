@@ -12,6 +12,7 @@
 
   <div ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
     <h1>Shopping List</h1>
+    <button ng-click="session.logOut()">Log Out</button>
     <form ng-submit="ItemsCtrl.createItem()">
       <input type="text" ng-model='ItemsCtrl.name' placeholder='Enter an item'>
       <input type="integer" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
