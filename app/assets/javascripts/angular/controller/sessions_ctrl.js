@@ -1,4 +1,4 @@
-app.controller('SessionsController', ['$http', 'Session', '$window', function($http, Session, $window) {
+app.controller('SessionsController', ['$http', 'Session', 'Item', '$window', function($http, Session, Item, $window) {
   this.loggedIn = false;
   this.error = false;
   this.login = function() {
@@ -12,6 +12,7 @@ app.controller('SessionsController', ['$http', 'Session', '$window', function($h
       function(success) {
         $window.sessionStorage.token = success.data;
         console.log($window.sessionStorage.token);
+        Item.all();
         sessionCtrl.loggedIn = true;
       },
       // error
