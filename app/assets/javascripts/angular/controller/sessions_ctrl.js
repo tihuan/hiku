@@ -14,13 +14,20 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$window', fun
         console.log($window.sessionStorage.token);
         Item.all();
         sessionCtrl.loggedIn = true;
+        clearInput(attr);
       },
       // error
       function(error) {
         sessionCtrl.errorMsg = error.data;
         delete $window.sessionStorage.token;
         sessionCtrl.error = true;
+        clearInput(attr);
       }
     )
   };
+
+  function clearInput(attr) {
+    attr.email = "";
+    attr.password = "";
+  }
 }]);
