@@ -21,8 +21,8 @@
     </form>
     <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
       <li ng-repeat="item in ItemsCtrl.items">
-        {{item.name}}, {{item.quantity}}
-        <a href="" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</a>
+        <a href="">{{item.name}}, {{item.quantity}}</a>
+        <a href="" class="btn-link" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</a>
       </li>
     </ol>
   </div>
