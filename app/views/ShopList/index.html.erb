@@ -1,12 +1,12 @@
 <div ng-controller="SessionsController as session">
   <h1>hiku</h1>
-  <form ng-submit="session.login()" ng-hide="session.loggedIn">
+  <form name="loginForm" ng-submit="loginForm.$valid && session.login()" ng-hide="session.loggedIn" novalidate>
     <h1>Log In</h1>
     <div ng-show="session.error">
         {{session.errorMsg}} Please try again.
     </div>
-    <input type="text" ng-model='session.email' placeholder='JohnDoe@Gmail.com'>
-    <input type="password" ng-model='session.password' placeholder='$ecret'>
+    <input type="text" ng-model='session.email' placeholder='JohnDoe@Gmail.com' required>
+    <input type="password" ng-model='session.password' placeholder='$ecret' required>
     <input type="submit" value="Log In">
   </form>
 
