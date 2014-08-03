@@ -6,12 +6,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    puts 'CREATE Params?'
-    p params
-    if item_created = Item.create_item(merge_hiku_token(params))
+    item_created = Item.create_item(merge_hiku_token(params))
+    if item_created[:status] == "ok"
       render json: item_created, status: 200
     else
-      render json: 'Something went wrong. Please try again!'
+      #  TODO: Implement after create msg
+      render json: 'Something went wrong. Please try again!', status: 503
     end
   end
 
