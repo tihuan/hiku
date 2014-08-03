@@ -1,5 +1,6 @@
 <div ng-controller="SessionsController as session">
   <h1>hiku</h1>
+  <!--  Log In Form  -->
   <form name="loginForm" ng-submit="loginForm.$valid && session.login()" ng-hide="session.loggedIn" novalidate>
     <h1>Log In</h1>
     <div ng-show="session.error">
@@ -9,7 +10,7 @@
     <input type="password" ng-model='session.password' placeholder='$ecret' required>
     <input type="submit" value="Log In">
   </form>
-
+  <!-- Shopping List -->
   <div ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
     <h1>Shopping List</h1>
     <button ng-click="session.logout()">Log Out</button>
@@ -18,7 +19,7 @@
       <input type="integer" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
       <input type="submit" value="Add">
     </form>
-    <ol ng-if="session.loggedIn">
+    <ol ng-if="session.loggedIn" class="nav nav-pills">
       <li ng-repeat="item in ItemsCtrl.items">
         {{item.name}}, {{item.quantity}}
         <a href="" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</a>
