@@ -1,5 +1,5 @@
 app.controller('SessionsController', ['$http', 'Session', 'Item', '$window', function($http, Session, Item, $window) {
-  this.loggedIn = false;
+  this.loggedIn = $window.sessionStorage.token;
   this.error = false;
   this.login = function() {
     var sessionCtrl = this;
@@ -12,7 +12,6 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$window', fun
       function(success) {
         $window.sessionStorage.token = success.data;
         console.log($window.sessionStorage.token);
-        Item.all();
         sessionCtrl.loggedIn = true;
         clearInput(attr);
       },
