@@ -6,7 +6,7 @@
   <%= image_tag "logo.jpg", alt:"hiku", id: "hiku-title" %>
   <!--  LoginForm  -->
   <form role="form" id="login-form" name="loginForm" ng-submit="loginForm.$valid && session.login()" ng-hide="session.loggedIn" novalidate>
-    <h1>Log In</h1>
+    <h1 id="login-title">Log In</h1>
     <div ng-show="session.error">
         {{session.errorMsg}} Please try again.
     </div>
