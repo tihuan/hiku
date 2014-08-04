@@ -1,4 +1,4 @@
-<div ng-controller="SessionsController as session">
+<div class="col-md-12" ng-controller="SessionsController as session">
   <h1>hiku</h1>
   <!--  Log In Form  -->
   <form name="loginForm" ng-submit="loginForm.$valid && session.login()" ng-hide="session.loggedIn" novalidate>
@@ -25,10 +25,13 @@
           {{item.name}} | {{item.quantity}} {{ItemsCtrl.showDetail}}
         </a>
         <!-- Item Details -->
-        <ul ng-show="showDetails">
-          <li>Asile: {{item.aisleName}}</li>
-          <li>EAN Code: {{item.ean}}</li>
-        </ul>
+        <div ng-show="showDetails" class="">
+          <p class="btn-primary">TEST</p>
+          <ul>
+            <li>Asile: {{item.aisleName}}</li>
+            <li>EAN Code: {{item.ean}}</li>
+          </ul>
+        </div>
         <button class="btn-link" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</button>
       </li>
     </ol>
