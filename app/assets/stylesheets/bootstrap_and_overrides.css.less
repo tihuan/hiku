@@ -28,3 +28,10 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+@hikuGreen: lighten(#5AB01D, 15%);
+@hikuGreenDarker: #5AB01D;
+
+.btn-success {
+  .buttonBackground(@hikuGreen, @hikuGreenDarker);
+}
