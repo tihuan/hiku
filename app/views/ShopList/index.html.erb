@@ -46,8 +46,8 @@
           <div id="item-details" ng-show="showDetails" class="">
             <p class="btn-primary">Item Details</p>
             <ul>
-              <li>Asile: {{item.aisleName}}</li>
-              <li>EAN Code: {{item.ean}}</li>
+              <li>Asile: <b>{{item.aisleName}}</b></li>
+              <li>EAN Code: <b>{{item.ean}}</b></li>
             </ul>
           </div>
           <button class="btn-link" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</button>
