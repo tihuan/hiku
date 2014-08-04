@@ -21,10 +21,11 @@
     </form>
     <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
       <li ng-repeat="item in ItemsCtrl.items">
-        <button type="button" class="btn btn-success" ng-model="ItemsCtrl.showDetail" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-        {{item.name}} | {{item.quantity}} {{ItemsCtrl.showDetail}}</button>
-        <!-- Item Detail -->
-        <ul ng-show="showDetail">
+        <a href="" class="btn-success" ng-click="showDetails = !showDetails">
+          {{item.name}} | {{item.quantity}} {{ItemsCtrl.showDetail}}
+        </a>
+        <!-- Item Details -->
+        <ul ng-show="showDetails">
           <li>Asile: {{item.aisleName}}</li>
           <li>EAN Code: {{item.ean}}</li>
         </ul>
