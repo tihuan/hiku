@@ -35,8 +35,12 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', 
 
   this.logout = function() {
     delete $window.sessionStorage.token;
-    $window.location.reload();
+    sessionCtrl.refresh();
   };
+
+  this.refresh = function() {
+    $window.location.reload();
+  }
 
   $rootScope.$on('checkToken', function() {
     if (sessionCtrl.loggedIn) {
