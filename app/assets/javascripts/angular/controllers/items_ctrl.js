@@ -22,8 +22,6 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
     return Item.delete(id);
   };
 
-  this.showDetail = 0;
-
   $rootScope.$on('loggedIn', function() {
     itemsCtrl.items = Item.all();
   });
