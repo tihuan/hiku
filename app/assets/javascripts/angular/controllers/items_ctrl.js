@@ -1,6 +1,6 @@
 app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootScope) {
   var itemsCtrl = this;
-  // this.items = Item.all();
+  this.items = [];
 
   this.createItem = function() {
     var attr = {};
@@ -25,4 +25,6 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
   $rootScope.$on('loggedIn', function() {
     itemsCtrl.items = Item.all();
   });
+
+  $rootScope.$emit('checkToken');
 }]);
