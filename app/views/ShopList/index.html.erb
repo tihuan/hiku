@@ -38,7 +38,7 @@
     <!-- Display Items -->
     <div id="item-list">
       <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
-        <li ng-repeat="item in [1,2,3,4]">
+        <li ng-repeat="item in ItemsCtrl.items">
           <a href="" class="btn-success" ng-click="showDetails = !showDetails">
             {{item.name}} | {{item.quantity}} {{ItemsCtrl.showDetail}}
           </a>
