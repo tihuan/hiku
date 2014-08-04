@@ -1,8 +1,9 @@
 app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', '$window', function($http, Session, Item, $rootScope, $window) {
+  var sessionCtrl = this;
   this.loggedIn = $window.sessionStorage.token;
   this.error = false;
+
   this.login = function() {
-    var sessionCtrl = this;
     var attr = {};
     attr.email = this.email;
     attr.password = this.password;
@@ -11,10 +12,9 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', 
       // success
       function(success) {
         $window.sessionStorage.token = success.data;
+        // Showing token in CONSOLE.LOG
         console.log($window.sessionStorage.token);
-        $rootScope.$emit('loggedIn');
-        sessionCtrl.loggedIn = true;
-        sessionCtrl.error = false;
+        sessionCtrl.loadItems();
         clearInput(attr);
       },
       // error
@@ -26,10 +26,25 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', 
       }
     )
   };
+
+  this.loadItems = function() {
+    $rootScope.$emit('loggedIn');
+    sessionCtrl.loggedIn = true;
+    sessionCtrl.error = false;
+  };
+
   this.logout = function() {
     delete $window.sessionStorage.token;
     $window.location.reload();
   };
+
+  $rootScope.$on('checkToken', function() {
+    if (sessionCtrl.loggedIn) {
+      sessionCtrl.loggedIn = true;
+      sessionCtrl.error = false;
+      $rootScope.$emit('loggedIn');
+    }
+  });
 
   function clearInput(attr) {
     attr.email = "";
