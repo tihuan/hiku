@@ -15,30 +15,38 @@
     <input type="submit" value="Log In">
   </form>
   <!-- Shopping List -->
-  <div ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
+  <div id="shopping-list" ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
     <h3 id="list-title">Shopping List</h3>
     <button ng-click="session.logout()">Log Out</button>
-    <form name="itemForm" ng-submit="itemForm.$valid && ItemsCtrl.createItem()" novalidate>
-      <input type="text" ng-model='ItemsCtrl.name' placeholder='Enter an item' required>
+    <!-- itemForm -->
+    <form role="form" id="item-form" name="itemForm" ng-submit="itemForm.$valid && ItemsCtrl.createItem()" novalidate>
+    <div class="form-group">
+      <label for="itemName">Item Name</label>
+      <input type="text" class="form-group" id="itemName" ng-model='ItemsCtrl.name' placeholder='Enter an item' required>
+    </div>
+
       <input type="integer" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
       <input type="submit" value="Add">
     </form>
-    <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
-      <li ng-repeat="item in ItemsCtrl.items">
-        <a href="" class="btn-success" ng-click="showDetails = !showDetails">
-          {{item.name}} | {{item.quantity}} {{ItemsCtrl.showDetail}}
-        </a>
-        <!-- Item Details -->
-        <div ng-show="showDetails" class="">
-          <p class="btn-primary">TEST</p>
-          <ul>
-            <li>Asile: {{item.aisleName}}</li>
-            <li>EAN Code: {{item.ean}}</li>
-          </ul>
-        </div>
-        <button class="btn-link" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</button>
-      </li>
-    </ol>
+    <!-- Display Items -->
+    <div id="item-list">
+      <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
+        <li ng-repeat="item in ItemsCtrl.items">
+          <a href="" class="btn-success" ng-click="showDetails = !showDetails">
+            {{item.name}} | {{item.quantity}} {{ItemsCtrl.showDetail}}
+          </a>
+          <!-- Item Details -->
+          <div id="item-details" ng-show="showDetails" class="">
+            <p class="btn-primary">Item Details</p>
+            <ul>
+              <li>Asile: {{item.aisleName}}</li>
+              <li>EAN Code: {{item.ean}}</li>
+            </ul>
+          </div>
+          <button class="btn-link" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</button>
+        </li>
+      </ol>
+    </div>
   </div>
 </div>
 <div class="col-md-3"></div>
