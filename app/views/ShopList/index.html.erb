@@ -25,7 +25,8 @@
       <input type="text" class="form-control" id="itemName" ng-model='ItemsCtrl.name' placeholder='Enter an item' required>
     </div>
     <div class="form-group">
-      <input type="integer" class="form-control" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
+      <label for="itemQuantity">Quantity</label>
+      <input type="integer" class="form-control" id="itemQuantity" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
     </div>
 
       <input type="submit" value="Add Item">
