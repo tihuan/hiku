@@ -10,12 +10,13 @@
     <div ng-show="session.error">
         {{session.errorMsg}} Please try again.
     </div>
-    <div>
-      <input type="text" ng-model='session.email' placeholder='Go@hiku.us' required>
+    <div class="form-group">
+      <label for="userEmail">Email</label>
+      <input type="text" class="form-control" id="userEmail" ng-model='session.email' placeholder='Go@hiku.us' required>
     </div>
-
-    <input type="password" ng-model='session.password' placeholder='LetMeSeeMyList' required>
-    <input type="submit" value="Log In">
+      <label for="userPassword">Password</label>
+      <input type="password" class="form-control" id="userPassword" ng-model='session.password' placeholder='LetMeSeeMyList' required>
+    <input type="submit" type="submit" class="btn btn-success" value="Log In">
   </form>
   <!-- Shopping List -->
   <div id="shopping-list" ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
@@ -32,7 +33,7 @@
       <input type="integer" class="form-control" id="itemQuantity" ng-model='ItemsCtrl.quantity' placeholder='Quantity'>
     </div>
 
-      <input type="submit" value="Add Item">
+      <input type="submit" class="btn btn-success" value="Add Item">
     </form>
     <!-- Display Items -->
     <div id="item-list">
