@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
       render json: item_created, status: 200
     else
       #  TODO: Implement after create msg
-      render json: 'Something went wrong. Please try again!', status: 503
+      render json: { data: 'Something went wrong. Please try again!' }, status: 503
     end
   end
 
