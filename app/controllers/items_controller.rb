@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
     if item_destroyed = Item.destroy_items(merge_hiku_token(params))
       render json: item_destroyed, status: 200
     else
-      render json: 'Something went wrong. Please try again!'
+      render json: { data: 'Something went wrong. Please try again!' }, status: 503
     end
   end
 
