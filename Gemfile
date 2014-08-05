@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'figaro'
+gem 'underscore-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'angularjs-rails'
 
