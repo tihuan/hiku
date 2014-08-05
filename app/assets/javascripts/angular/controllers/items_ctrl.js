@@ -4,9 +4,9 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
 
   this.createItem = function() {
     var attr = {};
-    attr.name = this.name;
-    attr.quantity = this.quantity;
-    itemsCtrl.items.push(attr);
+    attr.name = this.name.titleize();
+    attr.quantity = parseInt(this.quantity);
+    itemMatch(attr);
     var newItem = Item.create(attr);
     newItem.$promise.then(
       function(success) {
@@ -22,9 +22,24 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
     return Item.delete(id);
   };
 
+  function itemMatch(attr) {
+    var matched = false;
+    _.map(itemsCtrl.items, function(item) {
+      if (item.name.titleize() === attr.name.titleize()) {
+        matched = true;
+        return item.quantity = item.quantity + attr.quantity;
+      }
+    });
+    if (matched === false) {
+      return itemsCtrl.items.push(attr);
+    }
+  }
+
   $rootScope.$on('loggedIn', function() {
     itemsCtrl.items = Item.all();
   });
 
   $rootScope.$emit('checkToken');
 }]);
+
+
