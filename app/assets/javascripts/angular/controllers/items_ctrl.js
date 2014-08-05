@@ -5,7 +5,7 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
   this.createItem = function() {
     var attr = {};
     attr.name = this.name.titleize();
-    attr.quantity = parseInt(this.quantity);
+    attr.quantity = this.quantity;
     itemMatch(attr);
     var newItem = Item.create(attr);
     newItem.$promise.then(
