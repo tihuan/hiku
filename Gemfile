@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'puma'
 gem 'figaro'
 gem 'underscore-rails'
 gem 'angular-ui-bootstrap-rails'
