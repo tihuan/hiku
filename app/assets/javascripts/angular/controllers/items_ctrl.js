@@ -33,7 +33,7 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
     if (matched === false) {
       return itemsCtrl.items.push(attr);
     }
-  }
+  };
 
   $rootScope.$on('loggedIn', function() {
     itemsCtrl.items = Item.all();
