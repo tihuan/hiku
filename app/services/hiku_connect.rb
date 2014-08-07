@@ -35,6 +35,15 @@ class HikuConnect
 
     @response = http.start { |htt| htt.request(req) }
   end
+
+  def post
+    req = Net::HTTP::Post.new(uri.path)
+    req["Content-Type"] = "application/x-www-form-urlencoded"
+    puts "\n\n\nPOST REQUEST"
+    p req.body = URI.encode_www_form(params)
+    puts "AFTER POST REQUEST\n\n\n"
+    @response = http.start {|htt| htt.request(req) }
+  end
 end
 
 # class Get < HikuConnect
@@ -50,19 +59,19 @@ end
 #   end
 # end
 
-class Post < HikuConnect
-  attr_reader :response
+# class Post < HikuConnect
+#   attr_reader :response
 
-  def initialize(args={})
-    super
-    req = Net::HTTP::Post.new(uri.path)
-    req["Content-Type"] = "application/x-www-form-urlencoded"
-    puts "\n\n\nPOST REQUEST"
-    p req.body = URI.encode_www_form(params)
-    puts "AFTER POST REQUEST\n\n\n"
-    @response = http.start {|htt| htt.request(req) }
-  end
-end
+#   def initialize(args={})
+#     super
+#     req = Net::HTTP::Post.new(uri.path)
+#     req["Content-Type"] = "application/x-www-form-urlencoded"
+#     puts "\n\n\nPOST REQUEST"
+#     p req.body = URI.encode_www_form(params)
+#     puts "AFTER POST REQUEST\n\n\n"
+#     @response = http.start {|htt| htt.request(req) }
+#   end
+# end
 
 # class HikuPatch < Hiku
 # end

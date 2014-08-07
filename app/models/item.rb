@@ -13,7 +13,7 @@ class Item < ActiveRecord::Base
     endpoint = 'https://hiku-staging.herokuapp.com/api/v1/list'
     add_params = add_params.reject { |k, _| k == "action" || k == "controller" || k == "item" }
     post_params = { endpoint: endpoint }.merge(add_params).symbolize_keys
-    puts response = HikuConnect::Post.new(post_params).response.body
+    puts response = HikuConnect.new(post_params).post.response.body
     response_json = JSON.parse(response, symbolize_names: true)[:response]
   end
 
