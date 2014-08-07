@@ -42,7 +42,7 @@ class HikuConnect
     puts "\n\n\nPOST REQUEST"
     p req.body = URI.encode_www_form(params)
     puts "AFTER POST REQUEST\n\n\n"
-    @response = http.start {|htt| htt.request(req) }
+    @response = http.start { |htt| htt.request(req) }
   end
 
   def delete
@@ -52,6 +52,6 @@ class HikuConnect
     # delete_params = params.merge({ action: 'crossOff' })
     req.body = URI.encode_www_form(delete_params)
 
-    @response = http.start {|htt| htt.request(req) }
+    @response = http.start { |htt| htt.request(req) }
   end
 end
