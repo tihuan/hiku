@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
   def self.all_items(get_params)
     endpoint = 'https://hiku-staging.herokuapp.com/api/v1/list'
     get_params = get_params.merge({ endpoint: endpoint })
-    puts response = HikuConnect::Get.new(get_params).response.body
+    puts response = HikuConnect.new(get_params).get.response.body
     response_json = JSON.parse(response, symbolize_names: true)[:response][:data]
     puts "\n\n Product List"
     product_order = response_json[:list].to_json

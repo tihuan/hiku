@@ -1,6 +1,6 @@
 class HikuConnect
   attr_reader :uri, :app_id, :time, :sig,
-                     :local_params, :http
+                     :local_params, :http, :response
 
   def initialize(args={})
     endpoint = args[:endpoint]
@@ -26,6 +26,14 @@ class HikuConnect
     http.use_ssl = true
     http.ssl_version = :SSLv3
     return http
+  end
+
+  def get
+    req = Net::HTTP::Get.new(uri.path)
+    req["Content-Type"] = "application/x-www-form-urlencoded"
+    req.body = URI.encode_www_form(params)
+
+    @response = http.start { |htt| htt.request(req) }
   end
 end
 
