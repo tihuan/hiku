@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
     endpoint = 'https://hiku-staging.herokuapp.com/api/v1/list'
     destroy_params = destroy_params.reject { |k, _| k == "action" || k == "controller" }
     delete_params = { endpoint: endpoint }.merge(destroy_params).symbolize_keys
-    puts response = HikuConnect::Delete.new(delete_params).response.body
+    puts response = HikuConnect.new(delete_params).delete.response.body
     response_json = JSON.parse(response, symbolize_names: true)[:response]
   end
 end

@@ -44,43 +44,8 @@ class HikuConnect
     puts "AFTER POST REQUEST\n\n\n"
     @response = http.start {|htt| htt.request(req) }
   end
-end
 
-# class Get < HikuConnect
-#   attr_reader :response
-
-#   def initialize(args={})
-#     super
-#     req = Net::HTTP::Get.new(uri.path)
-#     req["Content-Type"] = "application/x-www-form-urlencoded"
-#     req.body = URI.encode_www_form(params)
-
-#     @response = http.start {|htt| htt.request(req) }
-#   end
-# end
-
-# class Post < HikuConnect
-#   attr_reader :response
-
-#   def initialize(args={})
-#     super
-#     req = Net::HTTP::Post.new(uri.path)
-#     req["Content-Type"] = "application/x-www-form-urlencoded"
-#     puts "\n\n\nPOST REQUEST"
-#     p req.body = URI.encode_www_form(params)
-#     puts "AFTER POST REQUEST\n\n\n"
-#     @response = http.start {|htt| htt.request(req) }
-#   end
-# end
-
-# class HikuPatch < Hiku
-# end
-
-class Delete < HikuConnect
-  attr_reader :response
-
-  def initialize(args={})
-    super
+  def delete
     req = Net::HTTP::Delete.new(uri.path)
     req["Content-Type"] = "application/x-www-form-urlencoded"
     delete_params = params.merge({ action: 'clear' })
