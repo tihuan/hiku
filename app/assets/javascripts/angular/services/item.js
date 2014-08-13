@@ -21,3 +21,10 @@ app.directive('itemForm', function(){
     templateUrl: '/assets/item-form.html'
   };
 });
+
+app.directive('itemList', function(){
+  return {
+    restrict: 'E',
+    templateUrl: '/assets/item-list.html'
+  };
+});

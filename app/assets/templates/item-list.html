@@ -1,0 +1,18 @@
+<div id="item-list">
+  <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
+    <li ng-repeat="item in ItemsCtrl.items">
+      <a href="" class="btn-success" ng-click="showDetails = !showDetails">
+        <div id="item">{{item.name}} | {{item.quantity}}</div>
+      </a>
+      <button class="btn-link" id="delete-btn" ng-click="ItemsCtrl.deleteItem(item.id, $index)">Delete</button>
+      <!-- Item Details -->
+      <div id="item-details" ng-show="showDetails" class="">
+        <p class="btn-primary">Item Details</p>
+        <ul>
+          <li>Asile: <b>{{item.aisleName}}</b></li>
+          <li>EAN Code: <b>{{item.ean}}</b></li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+</div>
