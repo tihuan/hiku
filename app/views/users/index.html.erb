@@ -5,19 +5,7 @@
 <div class="col-md-3" ng-controller="SessionsController as session">
   <%= image_tag "logo.jpg", alt:"hiku", id: "hiku-title" %>
   <!--  LoginForm  -->
-  <form role="form" id="login-form" name="loginForm" ng-submit="loginForm.$valid && session.login()" ng-hide="session.loggedIn" novalidate>
-    <h1 id="login-title">Log In</h1>
-    <div ng-show="session.error">
-        {{session.errorMsg}} Please try again.
-    </div>
-    <div class="form-group">
-      <label for="userEmail">Email</label>
-      <input type="text" class="form-control" id="userEmail" ng-model='session.email' placeholder='Go@hiku.us' required>
-    </div>
-      <label for="userPassword">Password</label>
-      <input type="password" class="form-control" id="userPassword" ng-model='session.password' placeholder='ShopForMe' required>
-    <input type="submit" type="submit" class="btn btn-success" value="Log In">
-  </form>
+  <login-form></login-form>
   <!-- Shopping List -->
   <div id="shopping-list" ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
     <h3 id="list-title">Shopping List</h3>
