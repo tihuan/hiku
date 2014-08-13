@@ -14,3 +14,10 @@ app.factory('Item', ['$resource', function($resource) {
   };
   return new Item;
 }]);
+
+app.directive('itemForm', function(){
+  return {
+    restrict: 'E',
+    templateUrl: '/assets/item-form.html'
+  };
+});

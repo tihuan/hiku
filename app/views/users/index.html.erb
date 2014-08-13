@@ -12,18 +12,7 @@
     <button class="btn btn-danger" id="logout" ng-click="session.logout()">Log Out</button>
     <button class="btn btn-info" id="refresh" ng-click="session.refresh()">Refresh</button>
     <!-- itemForm -->
-    <form role="form" id="item-form" name="itemForm" ng-submit="itemForm.$valid && ItemsCtrl.createItem()" novalidate>
-      <h4>Add new item</h4>
-      <div class="form-group">
-        <label for="itemName">Item Name</label>
-        <input type="text" class="form-control" id="itemName" ng-model='ItemsCtrl.name' placeholder='Enter an item' required>
-      </div>
-      <div class="form-group">
-        <label for="itemQuantity">Quantity</label>
-        <input type="number" class="form-control" id="itemQuantity" ng-model='ItemsCtrl.quantity' placeholder='Quantity' integer>
-      </div>
-      <input type="submit" class="btn btn-success" id="item-form-submit" value="Add Item">
-    </form>
+    <item-form></item-form>
     <!-- Display Items -->
     <div id="item-list">
       <ol ng-if="session.loggedIn" class="nav nav-pills nav-stacked">
