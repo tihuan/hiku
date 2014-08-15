@@ -7,7 +7,7 @@
   <!--  LoginForm  -->
   <login-form></login-form>
   <!-- Shopping List -->
-  <div id="shopping-list" ng-controller="ItemsController as ItemsCtrl" ng-show="session.loggedIn">
+  <div id="shopping-list" ng-controller="ItemsController as itemsCtrl" ng-show="session.loggedIn">
     <h3 id="list-title">Shopping List</h3>
     <button class="btn btn-danger" id="logout" ng-click="session.logout()">Log Out</button>
     <button class="btn btn-info" id="refresh" ng-click="session.refresh()">Refresh</button>
