@@ -14,10 +14,3 @@ app.factory('Item', ['$resource', function($resource) {
   };
   return new Item;
 }]);
-
-app.directive('itemList', function(){
-  return {
-    restrict: 'E',
-    templateUrl: '/assets/item-list.html'
-  };
-});
