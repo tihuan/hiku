@@ -12,12 +12,12 @@ app.factory('Item', ['$resource', function($resource) {
       return resource.query();
     };
 
-    function create() {
+    function create(attr) {
       console.log(attr);
       return resource.save(attr);
     };
 
-    function remove() {
+    function remove(itemId) {
       return resource.remove({ id: itemId });
     };
 }]);
