@@ -19,7 +19,7 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
 
   this.deleteItem = function(id, index) {
     this.items.splice(index, 1);
-    return Item.delete(id);
+    return Item.remove(id);
   };
 
   function itemMatch(attr) {
