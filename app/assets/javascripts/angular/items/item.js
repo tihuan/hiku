@@ -1,16 +1,23 @@
 app.factory('Item', ['$resource', function($resource) {
-  function Item() {
-    this.service = $resource('/items/:id', { id: '@id' });
-  };
-  Item.prototype.all = function() {
-    return this.service.query();
-  };
-  Item.prototype.create = function(attr) {
-    console.log(attr);
-    return this.service.save(attr);
-  };
-  Item.prototype.delete = function(itemId) {
-    this.service.remove({ id: itemId });
-  };
-  return new Item;
+    var resource = $resource('/items/:id', { id: '@id' });
+    var service = {
+      all: all,
+      create: create,
+      remove: remove
+    };
+
+    return service;
+
+    function all() {
+      return resource.query();
+    };
+
+    function create() {
+      console.log(attr);
+      return resource.save(attr);
+    };
+
+    function remove() {
+      return resource.remove({ id: itemId });
+    };
 }]);
