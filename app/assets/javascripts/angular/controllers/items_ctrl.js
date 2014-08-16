@@ -1,8 +1,11 @@
 app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootScope) {
   var itemsCtrl = this;
-  itemsCtrl.items = [];
 
-  itemsCtrl.createItem = function() {
+  itemsCtrl.items = [];
+  itemsCtrl.createItem = createItem;
+  itemsCtrl.deleteItem = deleteItem;
+
+  function createItem() {
     var attr = {};
     attr.name = this.name.titleize();
     attr.quantity = this.quantity || 1;
@@ -17,7 +20,7 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
     this.quantity = "";
   };
 
-  itemsCtrl.deleteItem = function(id, index) {
+  function deleteItem(id, index) {
     this.items.splice(index, 1);
     return Item.remove(id);
   };
