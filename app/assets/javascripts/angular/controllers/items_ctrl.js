@@ -1,4 +1,8 @@
-app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootScope) {
+angular
+  .module('Shoplist')
+  .controller('ItemsController', ['Item', '$rootScope', ItemsController]);
+
+function ItemsController(Item, $rootScope) {
   var itemsCtrl = this;
 
   itemsCtrl.items = [];
@@ -43,6 +47,4 @@ app.controller('ItemsController', ['Item', '$rootScope', function(Item, $rootSco
   });
 
   $rootScope.$emit('checkToken');
-}]);
-
-
+};
