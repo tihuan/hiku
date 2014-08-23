@@ -1,4 +1,8 @@
-app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', '$window', function($http, Session, Item, $rootScope, $window) {
+angular
+  .module('Shoplist')
+  .controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', '$window', SessionsController]);
+
+function SessionsController($http, Session, Item, $rootScope, $window) {
   var sessionCtrl = this;
   this.loggedIn = $window.sessionStorage.token;
   this.error = false;
@@ -54,4 +58,4 @@ app.controller('SessionsController', ['$http', 'Session', 'Item', '$rootScope', 
     attr.email = "";
     attr.password = "";
   }
-}]);
+};
