@@ -47,4 +47,4 @@ function ItemsController(Item, $rootScope) {
   });
 
   $rootScope.$emit('checkToken');
-};
+}

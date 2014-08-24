@@ -58,4 +58,4 @@ function SessionsController($http, Session, Item, $rootScope, $window) {
     attr.email = "";
     attr.password = "";
   }
-};
+}
