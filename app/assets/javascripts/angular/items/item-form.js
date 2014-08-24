@@ -1,6 +1,10 @@
-app.directive('itemForm', function(){
-  return {
-    restrict: 'E',
-    templateUrl: '/assets/item-form.html'
-  };
-});
+angular
+  .module('Shoplist')
+  .directive('itemForm', itemForm);
+
+  function itemForm() {
+    return {
+      restrict: 'E',
+      templateUrl: '/assets/item-form.html'
+    };
+  }
