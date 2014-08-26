@@ -1,4 +1,8 @@
-app.factory('Item', ['$resource', function($resource) {
+angular
+  .module('Shoplist')
+  .factory('Item', ['$resource', Item]);
+
+function Item($resource) {
     var resource = $resource('/items/:id', { id: '@id' });
     var service = {
       all: all,
@@ -20,4 +24,4 @@ app.factory('Item', ['$resource', function($resource) {
     function remove(itemId) {
       return resource.remove({ id: itemId });
     };
-}]);
+}
