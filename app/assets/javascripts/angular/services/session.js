@@ -1,4 +1,8 @@
-app.factory('Session', ['$resource', function($resource) {
+angular
+  .module('Shoplist')
+  .factory('Session', ['$resource', Session]);
+
+function Session($resource) {
   function Session() {
     this.service = $resource('/sessions/:id', { id: '@id' });
   };
@@ -9,4 +13,4 @@ app.factory('Session', ['$resource', function($resource) {
     this.service.remove({ token: token });
   };
   return new Session;
-}]);
+}
