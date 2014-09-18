@@ -15,6 +15,7 @@ function SessionsController($http, Session, Item, $rootScope, $window) {
     request.$promise.then(
       // success
       function(success) {
+        // Set token in current browser tab
         $window.sessionStorage.token = success.data;
         // Showing token in CONSOLE.LOG
         console.log($window.sessionStorage.token);
